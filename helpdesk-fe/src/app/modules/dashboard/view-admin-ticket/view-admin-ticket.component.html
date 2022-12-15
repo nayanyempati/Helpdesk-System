@@ -1,0 +1,126 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col pb-6 px-6 sm:pb-10 sm:px-10 min-w-full">
+        <div class="mt-18 text-2xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center">My Ticket
+        </div>
+        <mat-card *ngIf="TicketClaims" class="p-6 mt-2 bg-gray-50 lg:w-ful md:w-full">
+            <div class="text-lg font-bold my-4">
+                {{TicketClaims.Title}}
+            </div>
+
+            <div class="border  p-8">
+                <div class="grid lg:grid-cols-4 sm:grid-col-2 gap-2">
+                    <div class="font-bold" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-md="35">
+                        Ticket Reference:
+                    </div>
+                    <div class="" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column" fxFlex="100"
+                        fxFlex.gt-md="65">
+                        HSID{{TicketClaims.Id}}
+                    </div>
+                    <div class="font-bold" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-md="35">
+                        Created By:
+                    </div>
+                    <div class="" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column" fxFlex="100"
+                        fxFlex.gt-md="65">
+                        {{TicketClaims.CreatedByFullName}}
+                    </div>
+                    <div class="font-bold" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-md="35">
+                        Created On:
+
+                    </div>
+                    <div class="" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column" fxFlex="100"
+                        fxFlex.gt-md="65">
+                        {{TicketClaims.CreatedOn | date:'medium' }}
+                    </div>
+                    <div class="font-bold" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-md="35">
+                        Priority:
+                    </div>
+                    <div class="" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column" fxFlex="100"
+                        fxFlex.gt-md="65">
+                        {{TicketClaims.Priority}}
+                    </div>
+                    <div class="font-bold" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-md="35">
+                        Ticket Status:
+
+                    </div>
+                    <div class="" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column" fxFlex="100"
+                        fxFlex.gt-md="65">
+                        {{TicketClaims.Status}}
+                    </div>
+                    <div class="font-bold" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-md="35">
+                        Assigned To:
+
+                    </div>
+                    <div class="" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column" fxFlex="100"
+                        fxFlex.gt-md="65">
+                        {{TicketClaims.AssignedToFullName}}
+                    </div>
+                    <div class="font-bold" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column"
+                        fxFlex="100" fxFlex.gt-md="35">
+                        Assign To:
+
+                    </div>
+                    <div class="" style="line-height: 40px" fxLayoutAlign="start" fxLayout="column" fxFlex="100"
+                        fxFlex.gt-md="65">
+                        <mat-form-field class="flex-auto opencops-mat-dense opencops-mat-no-subscript min-w-60 ">
+                            <mat-icon matPrefix [svgIcon]="'heroicons_outline:user'"></mat-icon>
+                            <mat-select (selectionChange)="assignTicketTo($event)" required placeholder="Assign To"
+                                 name="FullName">
+                                <mat-option *ngFor="let employee of employees" [value]="employee.Id">
+                                    {{employee.FirstName}} {{employee.LastName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class=" my-4">
+                {{TicketClaims.Description}}
+            </div>
+        </mat-card>
+
+        <div *ngIf="markAsResolved" class=" mt-2 lg:w-ful md:w-full">
+            <div class=" min-w-full">
+                <form fxFlex [formGroup]="CommentForm">
+                    <div class="form" fxFlex>
+                        <mat-form-field class="opencops-mat-no-subscript pt-2 w-full">
+                            <textarea rows="4" class="min-w-full" matInput formControlName="Comment"></textarea>
+                        </mat-form-field>
+                        <footer fxLayout="row" fxLayoutAlign="space-between center">
+                            <button (click)="createComment()" mat-raised-button aria-colcount="uppercase" color="accent"
+                                class="post-button" aria-label="POST"> Post
+                                Comment</button>
+                            <button (click)="markResolved()" mat-raised-button aria-colcount="uppercase" color="accent"
+                                class="post-button ml-4"> Mark as resolved</button>
+                        </footer>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+        <div class=" mt-2 ">
+            <div class="comment max-w-180 my-2 p-2" fxLayout="row" fxFlexFill
+                *ngFor="let Ticket of ticketComments; let i= index">
+
+                <div fxLayout="row" fxFlex>
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <span class="username font-semibold">{{Ticket.CreatedByFullname}}
+                            - {{ticketagecal(Ticket.CreatedOn)}} ago </span><br>
+                    </div>
+                    <div class="message p-4">
+                        {{Ticket.Description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

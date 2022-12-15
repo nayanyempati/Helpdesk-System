@@ -1,0 +1,53 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col items-center pb-6 px-6 sm:pb-10 sm:px-10">
+        <div class="mt-18 text-2xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center"> Clients
+        </div>
+        <mat-card class="p-6 mt-2 lg:w-ful md:w-full">
+            <div class="relative flex flex-col  sm:flex-row flex-0 sm:items-center sm:justify-between px-4 md:px-8">
+                <div class="bg-card-opencops dark:bg-gray-800 w-full">
+                    <div class="flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-4 sm:my-6">
+                        <div class="flex-auto print:hidden">
+
+                        </div>
+
+                        <div class="flex items-center mt-6  sm:mt-0 sm:ml-2 space-x-3">
+                            <button [routerLink]="['add']" mat-flat-button [color]="'primary'">
+                                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus'"></mat-icon>
+                                <span class="ml-2">ADD</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <ng-container *ngIf=" clientsCount > 0; else no clients">
+                        <ng-container *ngIf="clients.length; else noClients">
+                            <div
+                                class="grid gap-2  grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1">
+                                <ng-container *ngFor="let client of clients; let i = index; trackBy: trackByFn">
+                                    <div routerLinkActive="bg-gray-800" [routerLink]="[client.Token+'/overview']"
+                                        class="hover:bg-gray-100 cursor-pointer  flex flex-col max-w-80 border w-full mt-2">
+                                        <div class="flex items-center mx-6 sm:mx-8 my-4">
+                                            <img *ngIf="client.Logo" class="w-10 h-10 rounded-full mr-4"
+                                                src="{{client.Logo}}">
+                                            <img *ngIf="!client.Logo" class="w-10 h-10 rounded-full mr-4"
+                                                src="https://cdn-icons-png.flaticon.com/512/6009/6009978.png">
+                                            <div class="flex flex-col">
+                                                <span class="font-semibold leading-none">{{client.CompanyName}}</span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <ng-template #no clients>
+                        <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">There
+                            are no
+                            clients!</div>
+                    </ng-template>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+</div>

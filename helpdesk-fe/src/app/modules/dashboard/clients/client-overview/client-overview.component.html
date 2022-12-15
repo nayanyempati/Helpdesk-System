@@ -1,0 +1,109 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col items-center pb-6 px-6 sm:pb-10 sm:px-10">
+        <div class="mt-18 text-2xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center">{{company}}
+        </div>
+        <mat-card class="p-6 mt-2 lg:w-ful md:w-full">
+            <div class="relative flex flex-col  sm:flex-row flex-0 sm:items-center sm:justify-between px-4 md:px-8">
+                <div class="bg-card-opencops dark:bg-gray-800 w-full">
+                    <div class="flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-4 sm:my-6">
+                        <div class="flex-auto print:hidden">
+                            <mat-form-field
+                                class="opencops-mat-dense opencops-mat-no-subscript pt-2 w-full py-4 max-w-50">
+                                <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                                <input #searchInput matInput (keyup)="searchUser(searchInput.value)"
+                                    [autocomplete]="'off'" [placeholder]="'search'">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <ng-container *ngIf="userCount > 0; else nousers">
+                        <div class="overflow-x-auto sm:overflow-y-auto" cdkScrollable>
+                            <table class="w-full " [ngClass]="{'pointer-events-none': isLoading}" mat-table [matSort]
+                                [multiTemplateDataRows]="true" [dataSource]="dataSource" [trackBy]="trackByFn">
+
+                                <ng-container matColumnDef="Name">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        NAME </th>
+                                    <td class="dark:bg-gray-800" mat-cell *matCellDef="let user">
+                                        <div class="flex items-center">
+                                            <span class="truncate">{{user.FirstName}} {{user.LastName}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Email">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        EMAIL
+                                    </th>
+                                    <td class="dark:bg-gray-800" mat-cell *matCellDef="let user">
+                                        <div class="flex items-center">
+                                            {{user.Email}}
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Status">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        STATUS
+                                    </th>
+                                    <td class="dark:bg-gray-800 px-8" mat-cell *matCellDef="let user">
+                                        <div class="flex items-center ">
+                                            <span *ngIf="user.AccountStatus=='Active'"
+                                                class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">{{user.AccountStatus}}</span>
+                                            <span *ngIf="user.AccountStatus=='Pending Approval'"
+                                                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">{{user.AccountStatus}}</span>
+                                            <span *ngIf="user.AccountStatus=='InActive'"
+                                                class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">{{user.AccountStatus}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Action">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        ACTION
+                                    </th>
+                                    <td class="dark:bg-gray-800" mat-cell *matCellDef="let user">
+                                        <div class="flex items-center cursor-pointer">
+                                            <div *ngIf="user.AccountStatus=='Pending Approval'" class="">
+                                                <button (click)="userAction('Approve',user.Token)" mat-raised-button
+                                                    type="button" [color]="'primary'">Approve</button>
+                                            </div>
+                                            <div (click)="userAction('Disable',user.Token)"
+                                                *ngIf="user.AccountStatus=='Active'" class="">
+                                                <button mat-raised-button type="button" [color]="'warn'">Disable
+                                                    Access</button>
+                                            </div>
+                                            <div (click)="userAction('Enable',user.Token)"
+                                                *ngIf="user.AccountStatus=='InActive'" class="">
+                                                <button mat-raised-button type="button" [color]="'primary'">Enable
+                                                    Access</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <tr class="shadow dark:bg-gray-800" mat-header-row
+                                    *matHeaderRowDef="userTableColumns; sticky: true">
+                                </tr>
+                                <tr class="h-18 hover:bg-hover" mat-row
+                                    *matRowDef="let user; columns: userTableColumns;">
+                                </tr>
+                            </table>
+                        </div>
+                    </ng-container>
+                    <ng-template #nousers>
+                        <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">There
+                            are no
+                            users!</div>
+                    </ng-template>
+                    <mat-paginator
+                        class="sm:inset-x-0 sm:bottom-0 print:hidden border-b sm:border-t sm:border-b-0 z-10 dark:bg-transparent"
+                        [pageSizeOptions]="[5,10,25,50,100]">
+                    </mat-paginator>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+</div>

@@ -1,0 +1,99 @@
+/* Variables */
+:root {
+    --helpdesk-vertical-navigation-thin-width: 80px;
+}
+
+helpdesk-vertical-navigation {
+
+    /* Thin appearance overrides */
+    &.helpdesk-vertical-navigation-appearance-thin {
+        width: var(--helpdesk-vertical-navigation-thin-width);
+        min-width: var(--helpdesk-vertical-navigation-thin-width);
+        max-width: var(--helpdesk-vertical-navigation-thin-width);
+
+        /* Left positioned */
+        &.helpdesk-vertical-navigation-position-left {
+
+            &.helpdesk-vertical-navigation-mode-side {
+                margin-left: calc(var(--helpdesk-vertical-navigation-thin-width) * -1);
+            }
+
+            &.helpdesk-vertical-navigation-opened {
+                margin-left: 0;
+            }
+        }
+
+        /* Right positioned */
+        &.helpdesk-vertical-navigation-position-right {
+
+            &.helpdesk-vertical-navigation-mode-side {
+                margin-right: calc(var(--helpdesk-vertical-navigation-thin-width) * -1);
+            }
+
+            &.helpdesk-vertical-navigation-opened {
+                margin-right: 0;
+            }
+
+            .helpdesk-vertical-navigation-aside-wrapper {
+                left: auto;
+                right: var(--helpdesk-vertical-navigation-thin-width);
+            }
+        }
+
+        /* Wrapper */
+        .helpdesk-vertical-navigation-wrapper {
+
+            /* Content */
+            .helpdesk-vertical-navigation-content {
+
+                > helpdesk-vertical-navigation-aside-item,
+                > helpdesk-vertical-navigation-basic-item {
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 64px;
+                    min-height: 64px;
+                    max-height: 64px;
+                    padding: 0 16px;
+
+                    .helpdesk-vertical-navigation-item-wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .helpdesk-vertical-navigation-item {
+                            justify-content: center;
+                            padding: 12px;
+                            border-radius: 4px;
+
+                            .helpdesk-vertical-navigation-item-icon {
+                                margin: 0;
+                            }
+
+                            .helpdesk-vertical-navigation-item-arrow,
+                            .helpdesk-vertical-navigation-item-badge-content,
+                            .helpdesk-vertical-navigation-item-title-wrapper {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                > helpdesk-vertical-navigation-collapsable-item {
+                    display: none
+                }
+
+                > helpdesk-vertical-navigation-group-item {
+
+                    > .helpdesk-vertical-navigation-item-wrapper {
+                        display: none
+                    }
+                }
+            }
+        }
+
+        /* Aside wrapper */
+        .helpdesk-vertical-navigation-aside-wrapper {
+            left: var(--helpdesk-vertical-navigation-thin-width);
+        }
+    }
+}

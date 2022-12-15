@@ -1,0 +1,68 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col items-center pb-6 px-6 sm:pb-10 sm:px-10">
+        <div class="mt-18 text-2xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center">Create Ticket
+        </div>
+        <div class="mt-2 text-lg text-center text-secondary">Here are the most frequently asked questions you may check
+            before getting started</div>
+        <mat-card class="p-6 mt-2 lg:w-1/2 md:w-full">
+            <form class="needs-validation" [formGroup]="CreateSupportForm" fxLayout="column" fxLayoutGap="20px">
+                <!-- Name field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Title</mat-label>
+                    <input id="Ticket" matInput [formControlName]="'Ticket'">
+                    <mat-error *ngIf="CreateSupportForm.get('Ticket').hasError('required')">
+                        Title name is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput rows="4" [formControlName]="'Description'"></textarea>
+                    <mat-error *ngIf="CreateSupportForm.get('Description').hasError('required')">
+                        Description is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Priority</mat-label>
+                    <mat-select required formControlName="Priority">
+                        <mat-option [value]="Priority" *ngFor="let Priority of Priorities">
+                            {{ Priority }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="CreateSupportForm.get('Priority').hasError('required')">
+                        Priority is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="w-full">
+                    <mat-label>Department</mat-label>
+                    <mat-select required formControlName="Department">
+                        <mat-option [value]="Department" *ngFor="let Department of departments">
+                            {{ Department }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="CreateSupportForm.get('Department').hasError('required')">
+                        Department is required
+                    </mat-error>
+                </mat-form-field>
+                <ngx-dropzone class="dark:bg-gray-800"
+                    style="width: 100%; height: 100px; padding: 20px; border: 1px dotted #ccc !important;"
+                    (change)="uploadAttachment($event)">
+                    <ngx-dropzone-label style="font-size: 12px;">Drop and drop or click here to poc
+                        or click on empty space <br>Accepts
+                        .jpg, .png, .bmp, .mp4, .docx, .pdf and Mark image type by clicking button below image.
+                    </ngx-dropzone-label>
+                </ngx-dropzone>
+                <!-- Submit button -->
+                <button class="helpdesk-mat-button-large uppercase w-full mt-3" mat-flat-button [color]="'primary'"
+                    [disabled]="CreateSupportForm.disabled" (click)="createTicket()">
+                    <span *ngIf="!CreateSupportForm.disabled">
+                        create ticket
+                    </span>
+                    <mat-progress-spinner *ngIf="CreateSupportForm.disabled" [diameter]="24"
+                        [mode]="'indeterminate'"></mat-progress-spinner>
+                </button>
+
+            </form>
+        </mat-card>
+    </div>
+</div>

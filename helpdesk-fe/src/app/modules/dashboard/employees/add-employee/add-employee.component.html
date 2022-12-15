@@ -1,0 +1,49 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col items-center pb-6 px-6 sm:pb-10 sm:px-10">
+        <div class="mt-18 text-2xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center">Add Employee
+        </div>
+        <mat-card class="p-6 mt-2 ">
+            <div class="relative flex flex-col  sm:flex-row flex-0 sm:items-center sm:justify-between px-4 md:px-8">
+                <form class="mt-8" [formGroup]="addEmployeeForm" #resetPasswordNgForm="ngForm">
+                    <mat-form-field class="w-full">
+                        <mat-label>First name</mat-label>
+                        <input id="FirstName" matInput [formControlName]="'FirstName'">
+                        <mat-error *ngIf="addEmployeeForm.get('FirstName').hasError('required')">
+                            First name is required
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- Name field -->
+                    <mat-form-field class="w-full">
+                        <mat-label>Last name</mat-label>
+                        <input id="LastName" matInput [formControlName]="'LastName'">
+                        <mat-error *ngIf="addEmployeeForm.get('LastName').hasError('required')">
+                            Last name is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Email field -->
+                    <mat-form-field class="w-full">
+                        <mat-label>Email address</mat-label>
+                        <input id="Email" matInput [formControlName]="'Email'">
+                        <mat-error *ngIf="addEmployeeForm.get('Email').hasError('required')">
+                            Email address is required
+                        </mat-error>
+                        <mat-error *ngIf="addEmployeeForm.get('Email').hasError('Email')">
+                            Please enter a valid email address
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Submit button -->
+                    <button class="helpdesk-mat-button-large w-full mt-6 uppercase" mat-flat-button [color]="'primary'"
+                        [disabled]="addEmployeeForm.disabled" (click)="addEmployee()">
+                        <span *ngIf="!addEmployeeForm.disabled">
+                            Submit
+                        </span>
+                        <mat-progress-spinner *ngIf="addEmployeeForm.disabled" [diameter]="24"
+                            [mode]="'indeterminate'"></mat-progress-spinner>
+                    </button>
+                </form>
+            </div>
+        </mat-card>
+    </div>
+</div>

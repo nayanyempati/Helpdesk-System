@@ -1,0 +1,115 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col items-center pb-6 px-6 sm:pb-10 sm:px-10">
+        <div class="mt-18 text-2xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center">Tickets
+        </div>
+        <mat-card class="p-6 mt-2 lg:w-ful md:w-full">
+            <div class="relative flex flex-col  sm:flex-row flex-0 sm:items-center sm:justify-between px-4 md:px-8">
+                <div class="bg-card-opencops dark:bg-gray-800 w-full">
+                    <div class="flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-4 sm:my-6">
+                        <div class="flex-auto print:hidden">
+                            <mat-form-field class="opencops-mat-dense opencops-mat-no-subscript pt-2 w-full py-4 max-w-50">
+                                <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                                <input #searchInput matInput (keyup)="searchTicket(searchInput.value)"
+                                    [autocomplete]="'off'" [placeholder]="'search'">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                  
+                    <ng-container *ngIf="ticketCount > 0; else notickets">
+                        <div class="overflow-x-auto sm:overflow-y-auto" cdkScrollable>
+                            <table class="w-full " [ngClass]="{'pointer-events-none': isLoading}" mat-table [matSort]
+                                [multiTemplateDataRows]="true" [dataSource]="dataSource" [trackBy]="trackByFn">
+
+                                <ng-container matColumnDef="Id">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        ID
+                                    </th>
+                                    <td class="dark:bg-gray-800" mat-cell *matCellDef="let ticket">
+                                        <div class="flex items-center">
+                                            <span class="truncate">{{ticket.Id}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="Title">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        TITLE </th>
+                                    <td class="dark:bg-gray-800" mat-cell *matCellDef="let ticket">
+                                        <div class="flex items-center">
+                                            <span class="truncate">{{ticket.Title}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Priority">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        PRIORITY
+                                    </th>
+                                    <td class="dark:bg-gray-800" mat-cell *matCellDef="let ticket">
+                                        <div class="flex items-center">
+                                            <div [innerHTML]="getpriority(ticket.Priority)"></div>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="CreatedOn">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        CREATED ON
+                                    </th>
+                                    <td class="dark:bg-gray-800 px-8" mat-cell *matCellDef="let ticket">
+                                        <div class="flex items-center ">
+                                            <span class="truncate">{{ticket.CreatedOn | date}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Status">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        STATUS
+                                    </th>
+                                    <td class="dark:bg-gray-800 px-8" mat-cell *matCellDef="let ticket">
+                                        <div class="flex items-center ">
+                                            <span *ngIf="ticket.Status=='Closed'"class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">{{ticket.Status}}</span>
+                                            <span  *ngIf="ticket.Status=='Open'" class="bg-red-100 text-red-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900">{{ticket.Status}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="Action">
+                                    <th class="dark:bg-gray-800 dark:bg-opacity-5" mat-header-cell *matHeaderCellDef
+                                        mat-sort-header>
+                                        ACTION
+                                    </th>
+                                    <td class="dark:bg-gray-800 px-8" mat-cell *matCellDef="let ticket">
+                                        <div [routerLink]="[ticket.Token+'/details']"
+                                            class="flex items-center cursor-pointer">
+                                            <mat-icon svgIcon="heroicons_outline:arrow-sm-right"></mat-icon>
+                                        </div>
+                                    </td>
+                                </ng-container>
+
+                                <tr class="shadow dark:bg-gray-800" mat-header-row
+                                    *matHeaderRowDef="ticketTableColumns; sticky: true">
+                                </tr>
+                                <tr class="h-18 hover:bg-hover" mat-row
+                                    *matRowDef="let ticket; columns: ticketTableColumns;">
+                                </tr>
+                            </table>
+                        </div>
+                    </ng-container>
+                    <ng-template #notickets>
+                        <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">There
+                            are no
+                            tickets!</div>
+                    </ng-template>
+                    <mat-paginator
+                        class="sm:inset-x-0 sm:bottom-0 print:hidden border-b sm:border-t sm:border-b-0 z-10 dark:bg-transparent"
+                        [pageSizeOptions]="[5,10,25,50,100]">
+                    </mat-paginator>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+</div>

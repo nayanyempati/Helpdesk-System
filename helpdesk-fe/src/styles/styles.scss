@@ -1,0 +1,8 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Helpdesk's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+.mat-mdc-button, .mat-mdc-raised-button, .mat-mdc-outlined-button, .mat-mdc-unelevated-button {
+    padding: 0 20px !important;
+    border-radius: 5px !important;
+}

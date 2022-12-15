@@ -1,0 +1,112 @@
+/* Variables */
+:root {
+    --helpdesk-vertical-navigation-compact-width: 112px;
+}
+
+helpdesk-vertical-navigation {
+
+    /* Compact appearance overrides */
+    &.helpdesk-vertical-navigation-appearance-compact {
+        width: var(--helpdesk-vertical-navigation-compact-width);
+        min-width: var(--helpdesk-vertical-navigation-compact-width);
+        max-width: var(--helpdesk-vertical-navigation-compact-width);
+
+        /* Left positioned */
+        &.helpdesk-vertical-navigation-position-left {
+
+            /* Side mode */
+            &.helpdesk-vertical-navigation-mode-side {
+                margin-left: calc(var(--helpdesk-vertical-navigation-compact-width) * -1);
+            }
+
+            /* Opened */
+            &.helpdesk-vertical-navigation-opened {
+                margin-left: 0;
+            }
+        }
+
+        /* Right positioned */
+        &.helpdesk-vertical-navigation-position-right {
+
+            /* Side mode */
+            &.helpdesk-vertical-navigation-mode-side {
+                margin-right: calc(var(--helpdesk-vertical-navigation-compact-width) * -1);
+            }
+
+            /* Opened */
+            &.helpdesk-vertical-navigation-opened {
+                margin-right: 0;
+            }
+
+            /* Aside wrapper */
+            .helpdesk-vertical-navigation-aside-wrapper {
+                left: auto;
+                right: var(--helpdesk-vertical-navigation-compact-width);
+            }
+        }
+
+        /* Wrapper */
+        .helpdesk-vertical-navigation-wrapper {
+
+            /* Content */
+            .helpdesk-vertical-navigation-content {
+
+                > helpdesk-vertical-navigation-aside-item,
+                > helpdesk-vertical-navigation-basic-item {
+
+                    .helpdesk-vertical-navigation-item-wrapper {
+                        margin: 4px 8px 0 8px;
+
+                        .helpdesk-vertical-navigation-item {
+                            flex-direction: column;
+                            justify-content: center;
+                            padding: 12px;
+                            border-radius: 6px;
+
+                            .helpdesk-vertical-navigation-item-icon {
+                                margin-right: 0;
+                            }
+
+                            .helpdesk-vertical-navigation-item-title-wrapper {
+                                margin-top: 8px;
+
+                                .helpdesk-vertical-navigation-item-title {
+                                    font-size: 12px;
+                                    font-weight: 500;
+                                    text-align: center;
+                                    line-height: 16px;
+                                }
+
+                                .helpdesk-vertical-navigation-item-subtitle {
+                                    display: none !important;
+                                }
+                            }
+
+                            .helpdesk-vertical-navigation-item-badge {
+                                position: absolute;
+                                top: 12px;
+                                left: 64px;
+                            }
+                        }
+                    }
+
+                    > helpdesk-vertical-navigation-collapsable-item {
+                        display: none
+                    }
+
+                    > helpdesk-vertical-navigation-group-item {
+
+                        > .helpdesk-vertical-navigation-item-wrapper {
+                            display: none
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Aside wrapper */
+        .helpdesk-vertical-navigation-aside-wrapper {
+            left: var(--helpdesk-vertical-navigation-compact-width);
+        }
+    }
+}

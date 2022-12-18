@@ -149,15 +149,17 @@ Try the demo portal on https://helpdesk.cygate.online/
 
 ## Individual Contribution
 
+
+
 **[Nayan Yempati 10623089]** - Front end
 
 1. Create angular application - (using the command npm install -g @angular/cli)
 1. Creating Routes - (Routes are used for navigation between the components)
-2. Creating components, models, services (components: Login, signup, create ticket, view ticket - models: THe recieved  api response is kept in the models, a model can be user a user list, tickets lists, Service: Submiting form data to back end )
+2. Creating components, models, services (components: Login, signup, create ticket, view ticket - models: The received  api response is kept in the models, a model can be user a user list, tickets lists, Service: Submitting form data to back end )
 3. Consume backend API developed in .Net 7 (data received from the back end )
 4. Create Authentication / Authorization based Routing (Preventing users from accessing the authenticated components)
-5. Create navigation based on roles (We have creating seperate navigation for different roels and those will be automatically redirect to particular navigation once the user login in)
-6. Used AuthGuard to prevent unauthorized access to components (Prevent users from acessing internal components without authetication)
+5. Create navigation based on roles (We have creating separate navigation for different roles and those will be automatically redirect to particular navigation once the user login in)
+6. Used AuthGuard to prevent unauthorized access to components (Prevent users from accessing internal components without authentication)
 7. Create form like Login, register, create ticket etc. 
 8. Build front-end app (ng build)
 
@@ -165,23 +167,25 @@ Try the demo portal on https://helpdesk.cygate.online/
 
 **[Nikhil Kongari 10627715]** - Backend
 1. Created .Net 7 Restful API (Used Visual Studio to create .net 7 application)
-2. Create controllers, models, interfaces, services - (controller it acts like a mediator between user and application, Model contains definition of a request like a login form contains email and password etc, Interface acts like a mediator between controller and service, using interfaces we can change the rquest to that need be perform) Service: Service perform the actions like CRUD operations or any database transcations)
-3. Configure database in .net for CRUD operations. (We use sql server and entity framework and scaffolding is used for generating database releated class)
-4. Use Entity Framework for all database transcations (We used EF, to perform transcations with databse usign LINQ)
-5. Create Authentication and Authorization based access to the endpoints (Preven aunthorized users accessing the API endpoints)
+2. Create controllers, models, interfaces, services - (controller it acts like a mediator between user and application, Model contains definition of a request like a login form contains email and password etc, Interface acts like a mediator between controller and service, using interfaces we can change the request to that need be perform) Service: Service perform the actions like CRUD operations or any database transactions)
+3. Configure database in .net for CRUD operations. (We use sql server and entity framework and scaffolding is used for generating database related class)
+4. Use Entity Framework for all database transactions (We used EF, to perform transactions with database using LINQ)
+5. Create Authentication and Authorization based access to the endpoints (Prevent unauthorized users accessing the API endpoints)
 6. Build Application 
 
 **[Challagundla Sitaram 10629290]**- Database and Deployment
-1. Create database and tables with various data types like varchar, datetime, int etc. (Used MSSQL to create databse and tables and used data types as per the requriments))
+1. Create database and tables with various data types like varchar, datetime, int etc. (Used MSSQL to create database and tables and used data types as per the requirements))
 2. Design the data flow into the tables as per the requirement (create primary key and data flow sequences, which data to be insert into which tables)
-3. Create a Server in AWS for hosting both front end and backend (Created windows server in AWS for hosting the frotn end abd backend)
-4. Configure IIS & database servers along with SSL  from Let's Encrypt (We used IIS for web server and MSSQL for database so installaed and configured both services)
-5. Deploy the build in IIS server (Build from frotn end and backend is published into webserver) 
+3. Create a Server in AWS for hosting both front end and backend (Created windows server in AWS for hosting the front end and backend)
+4. Configure IIS & database servers along with SSL  from Let's Encrypt (We used IIS for web server and MSSQL for database so installed and configured both services)
+5. Deploy the build in IIS server (Build from front end and backend is published into webserver) 
 
 
 **[Muppalla Vijaya Kumar 10626643]**- Testing
-1. Understand the functional  requirements (Understand how the functinalities should work in the application e.g login, create account, create ticket)
-2. Create the test cases and test scenarios (test case is nothing but an action to need be formed on the functionalities, checking the expected behavbiour can be test scenario. e.g how a login should work, how a create ticket should work ..etc.)
-3. Test the application as per the expected behaviour (Validate the expected behaviour from the functionality)
-4. Find functional bugs in both front end and backend (find the issues or bugs that arises during the tests scenarios/actions. e.g if the when valid username and password is used in login form and submitting he reqyest. If no response is received it can be a bus which can be happened withe rin backend or frontend) )
-5. Assist developer to fix the functional bugs (Discuss with the developer about the actions to peformed to identify the bug and assist the developer in fixing the bug)
+1. Understand the functional requirements (Understand how the functionalities should work in the application e.g login, create account, create ticket)
+2. Create the test cases and test scenarios (test case is nothing but an action to need be formed on the functionalities, checking the expected behavior can be test scenario. e.g how a login should work, how a create ticket should work ..etc.)
+3. Test the application as per the expected behavior (Validate the expected behavior from the functionality)
+4. Find functional bugs in both front end and backend (find the issues or bugs that arises during the tests scenarios/actions. e.g if the when valid username and password is used in login form and submitting, he request. If no response is received it can be a bus which can be happened with in backend or frontend) 
+5. Assist developer to fix the functional bugs (Discuss with the developer about the actions to performed to identify the bug and assist the developer in fixing the bug)
+
+

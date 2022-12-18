@@ -29,6 +29,9 @@ namespace helpdesk.Controllers
             _company = company;
         }
 
+
+
+
         
         [HttpPost("changepasseword"), Authorize]
         public async Task<ResponseMessage> ChangePassword([FromBody] ChangePassword change)

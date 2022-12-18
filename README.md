@@ -161,7 +161,7 @@ Individual Contribution:
 7. Create form like Login, register, create ticket etc. 
 8. Build front-end app (ng build)
 
-[Nikil Kongari 10627715] - Backend
+[Nikhil Kongari 10627715] - Backend
 1. Created .Net 7 Restful API (Used Visual Studio to create .net 7 application)
 2. Create controllers, models, interfaces, services - (controller it acts like a mediator between user and application, 
 Model contains definition of a request like a login form contains email and password etc, Interface acts like a mediator between controller and service, using interfaces we can change the rquest to that need be perform)

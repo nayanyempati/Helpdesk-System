@@ -1,4 +1,4 @@
-# Helpdesk - Admin template and Starter project for Angular
+# Helpdesk -
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
 
